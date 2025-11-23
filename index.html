@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinta ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Page 1 Styles */
+        #page1 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .love-text {
+            font-size: 1.5em;
+            color: white;
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin: 40px 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 2px;
+            height: 80px;
+            background: rgba(255,255,255,0.5);
+            transform: translateX(-50%);
+        }
+
+        .balloon::after {
+            content: '❤️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .balloon1 { background: #ff6b9d; top: 10%; left: 10%; animation-delay: 0s; }
+        .balloon2 { background: #ff8fab; top: 20%; right: 15%; animation-delay: 1s; }
+        .balloon3 { background: #ffa5bd; bottom: 20%; left: 15%; animation-delay: 2s; }
+        .balloon4 { background: #ffb3c6; top: 50%; right: 10%; animation-delay: 1.5s; }
+        .balloon5 { background: #ffc2d1; bottom: 15%; right: 20%; animation-delay: 0.5s; }
+
+        /* Page 2 Styles */
+        #page2 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .rose-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .rose {
+            width: 100px;
+            height: 120px;
+            position: relative;
+            animation: grow 3s ease-in-out infinite;
+        }
+
+        @keyframes grow {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .rose::before {
+            content: '🌹';
+            font-size: 5em;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .heart-rain {
+            position: absolute;
+            top: -50px;
+            font-size: 2em;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart-rain:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .heart-rain:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 2s; }
+        .heart-rain:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
+        .heart-rain:nth-child(4) { left: 55%; animation-duration: 9s; animation-delay: 1s; }
+        .heart-rain:nth-child(5) { left: 70%; animation-duration: 11s; animation-delay: 3s; }
+        .heart-rain:nth-child(6) { left: 85%; animation-duration: 8s; animation-delay: 5s; }
+
+        .love-message {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        .love-message h2 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .love-message p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.2em;
+        }
+
+        /* Buttons */
+        .nav-btn {
+            background: white;
+            color: #e91e63;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin: 20px 10px;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            background: #e91e63;
+            color: white;
+        }
+
+        /* Floating hearts */
+        .floating-heart {
+            position: absolute;
+            font-size: 3em;
+            animation: floatHeart 4s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.2); }
+        }
+
+        .floating-heart:nth-child(1) { top: 15%; left: 5%; animation-delay: 0s; }
+        .floating-heart:nth-child(2) { top: 25%; right: 8%; animation-delay: 1.5s; }
+        .floating-heart:nth-child(3) { bottom: 25%; left: 8%; animation-delay: 3s; }
+        .floating-heart:nth-child(4) { bottom: 15%; right: 5%; animation-delay: 2s; }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            font-size: 1.5em;
+            animation: sparkleAnim 2s infinite;
+        }
+
+        @keyframes sparkleAnim {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .sparkle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 30%; right: 25%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { bottom: 30%; left: 25%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 1.5s; }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Love Balloons -->
+    <div id="page1" class="page active">
+        <div class="balloon balloon1"></div>
+        <div class="balloon balloon2"></div>
+        <div class="balloon balloon3"></div>
+        <div class="balloon balloon4"></div>
+        <div class="balloon balloon5"></div>
+
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+
+        <div class="container">
+            <h1>💕 Cinta Sejati 💕</h1>
+            
+            <div class="love-text">
+                <h2>Balon-Balon Cinta</h2>
+                <p>Seperti balon yang melayang di udara, cinta membawa kita terbang tinggi ke langit kebahagiaan. Setiap balon mewakili momen indah yang kita bagi bersama.</p>
+                <p style="margin-top: 20px;">💖 Cinta adalah keajaiban yang mengubah hari biasa menjadi luar biasa 💖</p>
+            </div>
+
+            <button class="nav-btn" onclick="goToPage(2)">Lihat Taman Mawar 🌹</button>
+        </div>
+    </div>
+
+    <!-- Page 2: Rose Garden -->
+    <div id="page2" class="page">
+        <div class="heart-rain">💗</div>
+        <div class="heart-rain">💕</div>
+        <div class="heart-rain">💖</div>
+        <div class="heart-rain">💝</div>
+        <div class="heart-rain">💓</div>
+        <div class="heart-rain">💞</div>
+
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">💗</div>
+        <div class="floating-heart">💝</div>
+
+        <div class="container">
+            <h1>🌹 Taman Mawar 🌹</h1>
+            
+            <div class="rose-container">
+                <div class="rose"></div>
+                <div class="rose"></div>
+                <div class="rose"></div>
+                <div class="rose"></div>
+                <div class="rose"></div>
+            </div>
+
+            <div class="love-message">
+                <h2>Pesan Cinta</h2>
+                <p>Seperti mawar yang mekar indah di taman, cinta kita tumbuh dengan keindahan yang tak terlukiskan. Setiap kelopak mewakili kenangan manis yang kita ciptakan bersama.</p>
+                <p style="margin-top: 15px;">Mawar mungkin berduri, tapi cinta sejati mengajarkan kita untuk menerima kesempurnaan dalam ketidaksempurnaan.</p>
+                <p style="margin-top: 15px; font-weight: bold; color: #e91e63;">🌹 "Cinta adalah bunga kehidupan yang paling indah" 🌹</p>
+            </div>
+
+            <button class="nav-btn" onclick="goToPage(1)">Kembali ke Balon 💕</button>
+        </div>
+    </div>
+
+    <script>
+        function goToPage(pageNum) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('page' + pageNum).classList.add('active');
+        }
+    </script>
+</body>
+</html>
